@@ -8,7 +8,7 @@ const getEventos = async (req, res = response) => {
     const events = await Event.find()
                               .populate('user', 'name')  
 
-    return res.json({
+    res.json({
         ok: true,
         events
     })
@@ -25,7 +25,7 @@ const crearEvento = async (req, res = response) => {
 
         const eventSaved = await event.save();
 
-        return res.json({
+        res.json({
             ok: true,
             event: eventSaved
         })
@@ -69,7 +69,7 @@ const actualizarEvento = async (req, res = response) => {
 
         const eventUpdated = await Event.findByIdAndUpdate(eventId, newEvent, { new: true });
 
-        return res.json({
+        res.json({
             ok: true,
             event: eventUpdated
         })
@@ -108,7 +108,7 @@ const eliminarEvento = async (req, res = response) => {
 
         await Event.findByIdAndDelete(eventId);
 
-        return res.json({
+        res.json({
             ok: true
         })
 
